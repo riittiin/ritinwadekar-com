@@ -9,10 +9,14 @@ export function HeroGrid() {
   const mouse = useRef({ x: -1000, y: -1000, active: false });
 
   useEffect(() => {
-    const reduced =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
+    if (typeof window === "undefined") return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Cursor-reactive grid is pointless without a cursor and the canvas + rAF
+    // loop is heavy enough to trigger mobile OOM reloads. Skip on touch / small
+    // viewports.
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    const smallViewport = window.innerWidth < 768;
+    if (reduced || coarsePointer || smallViewport) return;
 
     const canvas = ref.current;
     if (!canvas) return;

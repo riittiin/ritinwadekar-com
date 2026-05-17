@@ -1421,6 +1421,19 @@
     color: var(--fg);
     text-align: right;
   }
+  @media (max-width: 600px) {
+    .contact-list > a,
+    .contact-list > span {
+      flex-wrap: wrap;
+      white-space: normal;
+      gap: 4px 12px;
+    }
+    .contact-list .v {
+      text-align: left;
+      width: 100%;
+      word-break: break-word;
+    }
+  }
 
   /* per-project detail page */
   .project-detail {
