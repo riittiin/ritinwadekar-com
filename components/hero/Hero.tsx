@@ -17,13 +17,13 @@ export function Hero() {
           </div>
 
           <h1 className="hero-headline">
-            I find where your systems aren't optimizing<br />
+            I find where your systems aren&apos;t optimizing<br />
             <span className="em">and rebuild them with AI that does.</span>
           </h1>
 
           <p className="hero-sub">
-            I'm <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Ritin Wadekar</strong>, an AI Engineer
-            at Onpoint Insights. I shipped an automated medical coding pipeline for a healthcare client. It's a system
+            I&apos;m <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Ritin Wadekar</strong>, an AI Engineer
+            at Onpoint Insights. I shipped an automated medical coding pipeline for a healthcare client. It&apos;s a system
             that turns clinical notes into billing codes approved by the government, built on official CMS data so every
             prediction is defensible. Before that, I built multi agent LLM pipelines, RAG systems, NLP,
             predictive and forecasting models, and recommendation engines across healthcare, pharma, and retail.

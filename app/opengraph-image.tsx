@@ -1,8 +1,7 @@
 import { ImageResponse } from "next/og";
 import { SITE } from "@/lib/data";
 
-export const runtime = "edge";
-export const alt = `${SITE.name} — ${SITE.role}`;
+export const alt = `${SITE.name}, ${SITE.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,8 +16,7 @@ export default function OG() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px 80px",
-          background:
-            "radial-gradient(60% 40% at 0% 0%, rgba(196, 224, 110, 0.12) 0%, transparent 60%), #1a1d22",
+          background: "#1a1d22",
           color: "#f6f7f9",
           fontFamily: "system-ui, sans-serif",
         }}
@@ -52,7 +50,7 @@ export default function OG() {
             I find where your systems
           </div>
           <div style={{ fontSize: 84, fontWeight: 500, lineHeight: 1.02, letterSpacing: "-0.035em" }}>
-            are not optimizing —
+            are not optimizing,
           </div>
           <div
             style={{

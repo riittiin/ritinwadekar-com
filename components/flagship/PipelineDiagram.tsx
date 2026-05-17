@@ -74,7 +74,7 @@ export function PipelineDiagram() {
     >
       <title id="flagship-pipeline-title">
         Diagram of the four step medical coding system. Step 1: receive the clinical note
-        (a patient's medical record). Step 2: look up matching billing codes in three official
+        (a patient&apos;s medical record). Step 2: look up matching billing codes in three official
         government sources from CMS, the Centers for Medicare and Medicaid Services. Step 3: a
         two stage AI pipeline narrows candidates then picks the right code. Step 4: check
         Medicaid and Medicare compliance rules and output the final code, with an error rate
