@@ -28,7 +28,7 @@ export function AboutSection() {
               <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Pune University</strong>{" "}
               with honors in AI and machine learning, then to{" "}
               <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Creative Galileo</strong>{" "}
-              for my first production machine-learning work — at an EdTech platform with 10M+
+              for my first production machine-learning work, at an EdTech platform with 10M+
               downloads.
             </p>
             <p style={{ marginBottom: 18 }}>
@@ -36,7 +36,7 @@ export function AboutSection() {
               <strong style={{ color: "var(--fg)", fontWeight: 500 }}>UT Dallas</strong> for a
               master&apos;s in Business Analytics and AI. I joined{" "}
               <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Onpoint Insights</strong> as
-              an intern and never left — working with clients across retail, pharma, and
+              an intern and never left, working with clients across retail, pharma, and
               healthcare, and now building a government-compliant medical coding pipeline as their
               sole AI Engineer.
             </p>
