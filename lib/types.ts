@@ -63,6 +63,4 @@ export type JourneyStop = {
   yr: string;
   pl: string;
   ct: string;
-  loc: string;
-  current?: boolean;
 };
