@@ -53,17 +53,28 @@ export function AboutSection() {
           </div>
 
           <aside className="journey" aria-label="Career trajectory">
-            <div className="head">Trajectory · 2019 → 2026</div>
-            <JourneyMap />
-            <div className="journey-stops">
-              {JOURNEY.map((j, i) => (
-                <div className="stop" key={i}>
-                  <span className="yr">{j.yr}</span>
-                  <span className="pl">{j.pl}</span>
-                  <span className="ct">{j.ct}</span>
-                </div>
-              ))}
+            <div className="journey-head">
+              <span className="journey-eyebrow">Trajectory</span>
+              <span className="journey-range">2019 — 2026</span>
             </div>
+            <JourneyMap />
+            <ol className="journey-timeline">
+              {JOURNEY.map((j, i) => (
+                <li className={`tnode${j.current ? " is-current" : ""}`} key={i}>
+                  <span className="tnode-rail" aria-hidden="true" />
+                  <span className="tnode-dot" aria-hidden="true" />
+                  <div className="tnode-body">
+                    <div className="tnode-meta">
+                      <span className="tnode-date">{j.yr}</span>
+                      {j.current && <span className="tnode-pill">CURRENT</span>}
+                    </div>
+                    <div className="tnode-org">{j.pl}</div>
+                    <div className="tnode-role">{j.ct}</div>
+                    <div className="tnode-loc">{j.loc}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </aside>
         </div>
 

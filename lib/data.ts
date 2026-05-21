@@ -444,11 +444,11 @@ export const CAPABILITIES: CapabilityGroup[] = [
 ];
 
 export const JOURNEY: JourneyStop[] = [
-  { yr: "2019", pl: "Pune University", ct: "B.E., Electronics & Telecom · Honors AI/ML" },
-  { yr: "2023 Apr", pl: "Creative Galileo", ct: "First production ML · Pune, India" },
-  { yr: "2023 Aug", pl: "UT Dallas", ct: "M.S., Business Analytics & AI" },
-  { yr: "2024", pl: "Onpoint Insights", ct: "Data Science Intern → Data Scientist" },
-  { yr: "2026", pl: "Onpoint Insights", ct: "AI Engineer · San Francisco, CA" },
+  { yr: "2019",     pl: "Pune University",  ct: "B.E., Electronics & Telecom · Honors in AI / ML",  loc: "Pune, India" },
+  { yr: "Apr 2023", pl: "Creative Galileo", ct: "First production ML role",                          loc: "Pune, India" },
+  { yr: "Aug 2023", pl: "UT Dallas",        ct: "M.S., Business Analytics & AI",                     loc: "Richardson, TX" },
+  { yr: "2024",     pl: "Onpoint Insights", ct: "Data Science Intern → Data Scientist",              loc: "Dallas, TX" },
+  { yr: "Now",      pl: "Onpoint Insights", ct: "AI Engineer",                                       loc: "San Francisco, CA", current: true },
 ];
 
 export const SITE = {
