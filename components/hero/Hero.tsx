@@ -25,11 +25,12 @@ export function Hero() {
           </h1>
 
           <p className="hero-sub">
-            <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Ritin Wadekar</strong>, AI Engineer.
-            Currently the sole AI Engineer at Onpoint Insights, shipping a government-compliant medical
-            coding pipeline grounded in authoritative CMS sources. Prior: multi-agent LLM systems, RAG
-            architectures, recommendation engines, causal models, and forecasting across healthcare,
-            pharma, and retail.
+            I&apos;m <strong style={{ color: "var(--fg)", fontWeight: 500 }}>Ritin Wadekar</strong>, an AI
+            Engineer at Onpoint Insights. I shipped an automated medical coding pipeline for a healthcare
+            client. It&apos;s a system that turns clinical notes into billing codes approved by the
+            government, built on official CMS data so every prediction is defensible. Before that, I built
+            multi agent LLM pipelines, RAG systems, NLP, predictive and forecasting models, and
+            recommendation engines across healthcare, pharma, and retail.
           </p>
 
           <div className="hero-ctas">
