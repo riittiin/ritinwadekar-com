@@ -394,6 +394,474 @@
     position: relative;
     z-index: 1;
     width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-left {
+    min-width: 0;
+  }
+  @media (max-width: 980px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+  }
+  .hero-right {
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-portrait {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    isolation: isolate;
+  }
+  .hero-portrait-halo {
+    position: absolute;
+    inset: -14% -16% 8% -14%;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        60% 55% at 55% 42%,
+        color-mix(in oklab, var(--accent) 18%, transparent) 0%,
+        color-mix(in oklab, var(--accent) 9%, transparent) 35%,
+        transparent 70%
+      ),
+      radial-gradient(
+        80% 70% at 50% 60%,
+        rgba(8, 12, 18, 0.7) 0%,
+        transparent 65%
+      );
+    filter: blur(28px);
+    opacity: 0.95;
+  }
+  .hero-portrait-grid {
+    position: absolute;
+    inset: 0 0 56px 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--fg) 4%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--fg) 4%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 75%);
+    opacity: 0.7;
+  }
+  .hero-portrait-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    background: var(--bg-2);
+    overflow: hidden;
+    border: 1px solid color-mix(in oklab, var(--fg) 7%, transparent);
+    box-shadow:
+      0 30px 90px -36px color-mix(in oklab, var(--accent) 32%, transparent),
+      0 10px 32px -10px rgba(0, 0, 0, 0.55),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+      inset 0 0 60px 8px rgba(0, 0, 0, 0.55);
+  }
+  .hero-portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 12%;
+    display: block;
+    filter:
+      contrast(1.06)
+      saturate(0.78)
+      brightness(0.86)
+      hue-rotate(-6deg);
+  }
+
+  /* color grade — push the warm/bright photo toward the cool dark palette */
+  .hero-portrait-grade {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(8, 14, 22, 0.18) 0%,
+        rgba(8, 14, 22, 0) 35%,
+        rgba(8, 14, 22, 0) 65%,
+        rgba(8, 14, 22, 0.55) 100%
+      ),
+      radial-gradient(
+        120% 90% at 50% 35%,
+        transparent 35%,
+        rgba(8, 14, 22, 0.35) 80%,
+        rgba(8, 14, 22, 0.65) 100%
+      );
+    mix-blend-mode: multiply;
+  }
+  /* CRT scan-lines — ties the photo to the LIVE FEED concept */
+  .hero-portrait-scanlines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.025) 0px,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+  }
+  /* edge vignette — fades the photo into the dark page instead of cutting hard */
+  .hero-portrait-vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(
+        130% 110% at 50% 50%,
+        transparent 50%,
+        rgba(0, 0, 0, 0.35) 80%,
+        rgba(0, 0, 0, 0.7) 100%
+      );
+  }
+  /* film grain — subtle organic noise to break up the digital flatness */
+  .hero-portrait-grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.12;
+  }
+
+  /* ---------- camera-viewfinder HUD ---------- */
+  .hero-hud {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg-2);
+  }
+  .hud-corner {
+    position: absolute;
+    width: 38px;
+    height: 38px;
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 0;
+  }
+  .hud-corner-tick {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    box-shadow: 0 0 6px color-mix(in oklab, var(--accent) 60%, transparent);
+  }
+  .hud-corner--tl {
+    top: 20px;
+    left: 20px;
+    border-top-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+  .hud-corner--tl .hud-corner-tick {
+    top: -3px;
+    left: -3px;
+  }
+  .hud-corner--tr {
+    top: 20px;
+    right: 20px;
+    border-top-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+  .hud-corner--tr .hud-corner-tick {
+    top: -3px;
+    right: -3px;
+  }
+  .hud-corner--bl {
+    bottom: 20px;
+    left: 20px;
+    border-bottom-width: 1.5px;
+    border-left-width: 1.5px;
+  }
+  .hud-corner--bl .hud-corner-tick {
+    bottom: -3px;
+    left: -3px;
+  }
+  .hud-corner--br {
+    bottom: 20px;
+    right: 20px;
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
+  }
+  .hud-corner--br .hud-corner-tick {
+    bottom: -3px;
+    right: -3px;
+  }
+  .hud-label {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    color: var(--fg-2);
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.75),
+      0 0 2px rgba(0, 0, 0, 0.85);
+  }
+  .hud-label--tl {
+    top: 28px;
+    left: 64px;
+  }
+  .hud-label--tr {
+    top: 28px;
+    right: 64px;
+  }
+  .hud-label--bl {
+    bottom: 28px;
+    left: 64px;
+  }
+  .hud-label--br {
+    bottom: 28px;
+    right: 64px;
+  }
+  .hud-accent {
+    color: var(--accent);
+  }
+  .hud-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+  .hud-dot.pulse {
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .hud-subject {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30%;
+    aspect-ratio: 1 / 1;
+  }
+  .hud-subject-label {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.85),
+      0 0 2px rgba(0, 0, 0, 0.95);
+  }
+  .hud-subject-box {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid var(--accent);
+    /* tracking-bracket corners on the subject reticle */
+    background:
+      linear-gradient(var(--accent), var(--accent)) top left / 10px 1.5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) top left / 1.5px 10px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) top right / 10px 1.5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) top right / 1.5px 10px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom left / 10px 1.5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom left / 1.5px 10px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom right / 10px 1.5px no-repeat,
+      linear-gradient(var(--accent), var(--accent)) bottom right / 1.5px 10px no-repeat;
+  }
+  /* center crosshair inside the subject reticle */
+  .hud-crosshair {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 14px;
+    height: 14px;
+    transform: translate(-50%, -50%);
+  }
+  .hud-crosshair::before,
+  .hud-crosshair::after {
+    content: "";
+    position: absolute;
+    background: var(--accent);
+    box-shadow: 0 0 4px color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+  .hud-crosshair::before {
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    transform: translateY(-50%);
+  }
+  .hud-crosshair::after {
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    transform: translateX(-50%);
+  }
+
+  /* vertical timecode / exposure strip on the right inside edge */
+  .hud-timecode {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 8px;
+    font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.22em;
+    color: color-mix(in oklab, var(--fg-2) 80%, transparent);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    text-shadow:
+      0 1px 4px rgba(0, 0, 0, 0.85),
+      0 0 2px rgba(0, 0, 0, 0.95);
+  }
+  .hud-timecode-rule {
+    writing-mode: horizontal-tb;
+    width: 1px;
+    height: 16px;
+    background: color-mix(in oklab, var(--accent) 50%, transparent);
+  }
+
+  .hero-portrait-caption {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 2px;
+    font-family: var(--font-mono), ui-monospace, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-3);
+  }
+  .hero-portrait-index {
+    color: var(--accent);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .hero-portrait-tag {
+    color: var(--fg);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .hero-portrait-sub {
+    color: var(--fg-4);
+    white-space: nowrap;
+  }
+  .hero-portrait-rule {
+    flex: 1;
+    height: 1px;
+    min-width: 12px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--line-soft) 20%,
+      var(--line-soft) 80%,
+      transparent
+    );
+  }
+  @media (max-width: 980px) {
+    .hero-portrait {
+      max-width: 420px;
+    }
+    .hud-label--tl,
+    .hud-label--bl {
+      left: 32px;
+    }
+    .hud-label--tr,
+    .hud-label--br {
+      right: 32px;
+    }
+    .hud-timecode {
+      display: none;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-portrait-caption {
+      font-size: 10px;
+      gap: 10px;
+    }
+    .hero-portrait-index {
+      display: none;
+    }
+    .hud-label {
+      font-size: 9px;
+    }
+    .hud-subject-label {
+      font-size: 9px;
+    }
+    /* top labels (REC, FOV) overflow on narrow frames — let the bottom row carry the HUD voice */
+    .hud-label--tl,
+    .hud-label--tr {
+      display: none;
+    }
+    .hud-corner {
+      width: 28px;
+      height: 28px;
+    }
+    .hud-corner--tl,
+    .hud-corner--tr {
+      top: 14px;
+    }
+    .hud-corner--bl,
+    .hud-corner--br {
+      bottom: 14px;
+    }
+    .hud-corner--tl,
+    .hud-corner--bl {
+      left: 14px;
+    }
+    .hud-corner--tr,
+    .hud-corner--br {
+      right: 14px;
+    }
+    .hud-label--bl {
+      left: 22px;
+      bottom: 22px;
+    }
+    .hud-label--br {
+      right: 22px;
+      bottom: 22px;
+    }
+    /* shrink halo / grid spill so it doesn't dominate the small layout */
+    .hero-portrait-halo {
+      inset: -8% -10% 4% -10%;
+      filter: blur(20px);
+    }
+    .hero-portrait-grid {
+      display: none;
+    }
+  }
+  @media (max-width: 420px) {
+    /* tightest screens — let the caption stack and breathe */
+    .hero-portrait-caption {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      gap: 6px 12px;
+    }
+    .hero-portrait-rule {
+      display: none;
+    }
   }
   .hero-meta {
     display: flex;
@@ -428,6 +896,8 @@
   }
   .hero-headline {
     margin: 0 0 48px;
+    font-size: clamp(44px, 6.2vw, 104px);
+    line-height: 1.02;
   }
   .hero-headline .em {
     display: inline-block;
@@ -436,13 +906,13 @@
     font-weight: 400;
     color: var(--accent);
     letter-spacing: -0.025em;
-    line-height: 1.12;
+    line-height: 1.08;
     padding-bottom: 0.18em;
   }
   .hero-sub {
-    font-size: 18px;
-    line-height: 1.55;
-    max-width: 56ch;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 58ch;
     color: var(--fg-2);
     margin-bottom: 36px;
   }
