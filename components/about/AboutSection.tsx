@@ -63,15 +63,12 @@ export function AboutSection() {
                 <li className={`tnode${j.current ? " is-current" : ""}`} key={i}>
                   <span className="tnode-rail" aria-hidden="true" />
                   <span className="tnode-dot" aria-hidden="true" />
-                  <div className="tnode-body">
-                    <div className="tnode-meta">
-                      <span className="tnode-date">{j.yr}</span>
-                      {j.current && <span className="tnode-pill">CURRENT</span>}
-                    </div>
-                    <div className="tnode-org">{j.pl}</div>
-                    <div className="tnode-role">{j.ct}</div>
-                    <div className="tnode-loc">{j.loc}</div>
-                  </div>
+                  <span className="tnode-date">{j.yr}</span>
+                  <span className="tnode-org">{j.pl}</span>
+                  <span className="tnode-ctx">
+                    {j.ct}
+                    <span className="tnode-loc"> · {j.loc}</span>
+                  </span>
                 </li>
               ))}
             </ol>
